@@ -1,5 +1,5 @@
 //¿àÝÂ­Û, 0416001 , ¿à«Â¤¯ , 0416225
-//Subject:     CO project 2 - Instruction Memory
+//Subject:     CO project 2 - Adder
 //--------------------------------------------------------------------------------
 //Version:     1
 //--------------------------------------------------------------------------------
@@ -10,36 +10,25 @@
 //Description: 
 //--------------------------------------------------------------------------------
 
-module Instr_Memory(
-    pc_addr_i,
-	instr_o
+module Adder(
+    src1_i,
+	src2_i,
+	sum_o
 	);
- 
+     
 //I/O ports
-input  [32-1:0]  pc_addr_i;
-output [32-1:0]	 instr_o;
+input  [32-1:0]  src1_i;
+input  [32-1:0]	 src2_i;
+output [32-1:0]	 sum_o;
 
 //Internal Signals
-reg    [32-1:0]	 instr_o;
-integer          i;
-
-//32 words Memory
-reg    [32-1:0]  Instr_Mem [0:32-1];
+wire    [32-1:0]	 sum_o;
 
 //Parameter
     
 //Main function
-always @(pc_addr_i) begin
-	instr_o = Instr_Mem[pc_addr_i/4];
-end
-    
-//Initial Memory Contents
-initial begin
-    for ( i=0; i<32; i=i+1 )
-	    Instr_Mem[i] = 32'b0;
-    $readmemb("CO_P2_test_data3.txt", Instr_Mem);  //Read instruction from "CO_P2_test_data1.txt"   
-		
-end
+assign sum_o = src1_i + src2_i ;
+
 endmodule
 
 
