@@ -1,4 +1,4 @@
-//���­�, 0416001 , ��¤� , 0416225
+//¿àÝÂ­Û, 0416001 , ¿à«Â¤¯ , 0416225
 //Subject:     CO project 2 - Simple Single CPU
 //--------------------------------------------------------------------------------
 //Version:     1
@@ -174,7 +174,15 @@ MUX_2to1 #(.size(32)) Mux_PC_Source(
 
 and g(and_out , zero_out , branch_out);
 		  
-
+Data_Memory Data_mem(
+			.clk_i(clk_i),
+			.addr_i(),
+			.data_i(),
+			.MemRead(),
+			.MemWrite(),
+			.data_o()
+			);
+	
 endmodule
 		  
 
