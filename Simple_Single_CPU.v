@@ -1,4 +1,3 @@
-//¿àÝÂ­Û, 0416001 , ¿à«Â¤¯ , 0416225
 //Subject:     CO project 2 - Simple Single CPU
 //--------------------------------------------------------------------------------
 //Version:     1
@@ -44,6 +43,11 @@ wire regwrite_out;
 wire [2:0] ALU_op_out;
 wire ALU_src_out;
 wire branch_out;
+wire Memread_i;
+wire MenWrite_i;
+wire MemtoReg_i;
+wire [1:0] branch_type;
+	
 
 //ALU ctr signal
 wire [3:0] ALU_ctr_out;
@@ -123,7 +127,7 @@ Decoder Decoder(
 	    .ALU_op_o(ALU_op_out),   
 	    .ALUSrc_o(ALU_src_out),
 	    .RegDst_o(regdst_out),   
-		.Branch_o(branch_out)   
+	    .Branch_o(branch_out)   
 	    );
 
 ALU_Ctrl AC(
@@ -175,13 +179,13 @@ MUX_2to1 #(.size(32)) Mux_PC_Source(
 and g(and_out , zero_out , branch_out);
 		  
 Data_Memory Data_mem(
-			.clk_i(clk_i),
-			.addr_i(),
-			.data_i(),
-			.MemRead(),
-			.MemWrite(),
-			.data_o()
-			);
+	.clk_i(clk_i),
+	.addr_i(ALU_result),
+	.data_i(rtdata_out),
+	.MemRead(),
+	.MemWrite(),
+	.data_o()
+		);
 	
 endmodule
 		  
